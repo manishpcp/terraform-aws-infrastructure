@@ -114,6 +114,7 @@ resource "aws_ecr_repository" "microservice" {
   tags = local.common_tags
 }
 
+
 resource "aws_ecr_lifecycle_policy" "microservice" {
   repository = aws_ecr_repository.microservice.name
 
