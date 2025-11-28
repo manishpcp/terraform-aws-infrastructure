@@ -3,7 +3,7 @@ name: Terraform Deploy
 on:
   push:
     branches: [main]
-    paths: ['**.tf', '.github/workflows/terraform-deploy.yml']
+
   pull_request:
     branches: [main]
   workflow_dispatch:
