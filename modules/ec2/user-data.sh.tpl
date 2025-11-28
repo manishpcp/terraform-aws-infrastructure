@@ -116,6 +116,7 @@ cat > /opt/aws/amazon-cloudwatch-agent/etc/config.json <<'EOF'
 }
 EOF
 
+
 # Start CloudWatch Agent
 /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
   -a fetch-config \
