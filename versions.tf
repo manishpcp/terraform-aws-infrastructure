@@ -12,14 +12,13 @@ terraform {
     }
   }
 
-  # Uncomment to use S3 backend
-  # backend "s3" {
-  #   bucket         = "my-terraform-state-bucket"
-  #   key            = "infrastructure/terraform.tfstate"
-  #   region         = "us-east-1"
-  #   encrypt        = true
-  #   dynamodb_table = "terraform-state-lock"
-  # }
+  backend "s3" {
+    bucket         = "my-app-terraform-state-project2"
+    key            = "wordpress-ecs/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "terraform-state-lock2"
+  }
 }
 
 provider "aws" {
