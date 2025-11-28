@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    name: Build and Push to ECR
+    name: Build and Deploy
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -41,3 +41,12 @@ jobs:
           tags: |
             ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
             ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Deploy to EC2 via SSM
+        run: |
+          aws ssm send-command \
+            --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --comment "Deploy latest microservice image" \
+            --parameters commands="/opt/microservice/deploy.sh '${{ steps.ecr.outputs.registry }}' '${{ env.ECR_REPOSITORY }}' 'latest'" \
+            --output text
