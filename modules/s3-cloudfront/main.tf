@@ -89,7 +89,7 @@ resource "aws_acm_certificate_validation" "cloudfront" {
 }
 
 resource "aws_cloudfront_origin_access_control" "website" {
-  name                              = "${var.name_prefix}-oac"
+  name                              = "${var.name_prefix}-oac-v2"
   description                       = "OAC for static website"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
